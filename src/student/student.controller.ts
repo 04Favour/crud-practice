@@ -34,8 +34,8 @@ export class StudentController {
   }
 
   @Post('by')
-  ByNameAndPass(@Body() payload:LoginDto){
-    return this.studentService.findByNameAndPass(payload.name, payload.reg_no)
+  async ByNameAndPass(@Body() payload:LoginDto): Promise<{name}>{
+    return await this.studentService.findByNameAndPass(payload.name, payload.reg_no)
   }
 
   @Patch(':id')
