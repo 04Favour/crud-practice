@@ -12,6 +12,7 @@ import { StudentService } from './student.service';
 import { UserDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { Student } from './entities/student.entity';
+import { LoginDto } from './dto/login.dto';
 
 @Controller('student')
 export class StudentController {
@@ -30,6 +31,11 @@ export class StudentController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.studentService.findOne(id);
+  }
+
+  @Post('by')
+  ByNameAndPass(@Body() payload:LoginDto){
+    return this.studentService.findByNameAndPass(payload.name, payload.reg_no)
   }
 
   @Patch(':id')

@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { HttpException, Injectable, Param } from '@nestjs/common';
+import { HttpException, Injectable} from '@nestjs/common';
 import { UserDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -28,6 +28,9 @@ export class StudentService {
 
   update(id: string, updateStudentDto: UpdateStudentDto) {
     return this.studentRepository.update(id, updateStudentDto)
+  }
+  async findByNameAndPass(Name:string, Reg_no: string): Promise<Student>{
+    return await this.studentRepository.findOne({where:{name: Name, reg_no: Reg_no}})
   }
 
   remove(id: string) {
